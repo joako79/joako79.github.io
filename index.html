@@ -8,6 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -30,219 +31,113 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/parcela_1.js"></script>
-        <script src="data/senderos_2.js"></script>
-        <script src="data/cerco_3.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/ANPChubut__1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-42.871051788614615,-64.99964578887125],[-42.758552230720255,-64.73295594576334]]);
+        }).fitBounds([[-46.60805469524593,-72.29984168851385],[-41.37626870520125,-63.3016686448494]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
-            map.setMaxBounds(map.getBounds());
         }
-        map.createPane('pane_ploma400_0');
-        map.getPane('pane_ploma400_0').style.zIndex = 400;
-        var img_ploma400_0 = 'data/ploma400_0.png';
-        var img_bounds_ploma400_0 = [[-42.871055463936095,-64.99964584814816],[-42.758548555659985,-64.73295587044247]];
-        var layer_ploma400_0 = new L.imageOverlay(img_ploma400_0,
-                                              img_bounds_ploma400_0,
-                                              {pane: 'pane_ploma400_0'});
-        bounds_group.addLayer(layer_ploma400_0);
-        map.addLayer(layer_ploma400_0);
-        function pop_parcela_1(feature, layer) {
+        map.createPane('pane_google_0');
+        map.getPane('pane_google_0').style.zIndex = 400;
+        var layer_google_0 = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            pane: 'pane_google_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_google_0;
+        map.addLayer(layer_google_0);
+        function pop_ANPChubut__1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['CLASSID'] !== null ? autolinker.link(feature.properties['CLASSID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FEATID'] !== null ? autolinker.link(feature.properties['FEATID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Nombre</th>\
+                        <td>' + (feature.properties['Nombre'] !== null ? autolinker.link(feature.properties['Nombre'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['DEP_DESCRI'] !== null ? autolinker.link(feature.properties['DEP_DESCRI'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Categoria</th>\
+                        <td>' + (feature.properties['Categoria'] !== null ? autolinker.link(feature.properties['Categoria'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['DEPARTAMEN'] !== null ? autolinker.link(feature.properties['DEPARTAMEN'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">UICN</th>\
+                        <td>' + (feature.properties['UICN'] !== null ? autolinker.link(feature.properties['UICN'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['EJI_DESCRI'] !== null ? autolinker.link(feature.properties['EJI_DESCRI'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Ecorregion</th>\
+                        <td>' + (feature.properties['Ecorregion'] !== null ? autolinker.link(feature.properties['Ecorregion'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['EJIDO'] !== null ? autolinker.link(feature.properties['EJIDO'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Superficie</th>\
+                        <td>' + (feature.properties['Superficie'] !== null ? autolinker.link(feature.properties['Superficie'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['CIRCUNSCRI'] !== null ? autolinker.link(feature.properties['CIRCUNSCRI'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Creacion</th>\
+                        <td>' + (feature.properties['Creacion'] !== null ? autolinker.link(feature.properties['Creacion'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SECTOR'] !== null ? autolinker.link(feature.properties['SECTOR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Ins_Legal</th>\
+                        <td>' + (feature.properties['Ins_Legal'] !== null ? autolinker.link(feature.properties['Ins_Legal'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['TIPO_DIVIS'] !== null ? autolinker.link(feature.properties['TIPO_DIVIS'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DIVISION'] !== null ? autolinker.link(feature.properties['DIVISION'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['COLONIA'] !== null ? autolinker.link(feature.properties['COLONIA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['PARCELA'] !== null ? autolinker.link(feature.properties['PARCELA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['PARTIDA'] !== null ? autolinker.link(feature.properties['PARTIDA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['TIPO_PARCE'] !== null ? autolinker.link(feature.properties['TIPO_PARCE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SUP_MENSUR'] !== null ? autolinker.link(feature.properties['SUP_MENSUR'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SUP_GEOMET'] !== null ? autolinker.link(feature.properties['SUP_GEOMET'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Num_Ley</th>\
+                        <td>' + (feature.properties['Num_Ley'] !== null ? autolinker.link(feature.properties['Num_Ley'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_parcela_1_0() {
+        function style_ANPChubut__1_0() {
             return {
-                pane: 'pane_parcela_1',
+                pane: 'pane_ANPChubut__1',
                 opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
+                color: 'rgba(14,64,0,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 3.0, 
-                fillOpacity: 0,
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(23,99,0,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_parcela_1');
-        map.getPane('pane_parcela_1').style.zIndex = 401;
-        map.getPane('pane_parcela_1').style['mix-blend-mode'] = 'normal';
-        var layer_parcela_1 = new L.geoJson(json_parcela_1, {
+        map.createPane('pane_ANPChubut__1');
+        map.getPane('pane_ANPChubut__1').style.zIndex = 401;
+        map.getPane('pane_ANPChubut__1').style['mix-blend-mode'] = 'normal';
+        var layer_ANPChubut__1 = new L.geoJson(json_ANPChubut__1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_parcela_1',
-            layerName: 'layer_parcela_1',
-            pane: 'pane_parcela_1',
-            onEachFeature: pop_parcela_1,
-            style: style_parcela_1_0,
+            dataVar: 'json_ANPChubut__1',
+            layerName: 'layer_ANPChubut__1',
+            pane: 'pane_ANPChubut__1',
+            onEachFeature: pop_ANPChubut__1,
+            style: style_ANPChubut__1_0,
         });
-        bounds_group.addLayer(layer_parcela_1);
-        map.addLayer(layer_parcela_1);
-        function pop_senderos_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? autolinker.link(feature.properties['NOMBRE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['IDENT'] !== null ? autolinker.link(feature.properties['IDENT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_senderos_2_0(feature) {
-            switch(String(feature.properties['NOMBRE'])) {
-                case 'Peatonal':
-                    return {
-                pane: 'pane_senderos_2',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'round',
-                lineJoin: 'round',
-                weight: 3.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case 'Vehicular':
-                    return {
-                pane: 'pane_senderos_2',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 3.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_senderos_2');
-        map.getPane('pane_senderos_2').style.zIndex = 402;
-        map.getPane('pane_senderos_2').style['mix-blend-mode'] = 'normal';
-        var layer_senderos_2 = new L.geoJson(json_senderos_2, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_senderos_2',
-            layerName: 'layer_senderos_2',
-            pane: 'pane_senderos_2',
-            onEachFeature: pop_senderos_2,
-            style: style_senderos_2_0,
-        });
-        bounds_group.addLayer(layer_senderos_2);
-        map.addLayer(layer_senderos_2);
-        function pop_cerco_3(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['IDENT'] !== null ? autolinker.link(feature.properties['IDENT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['LENGHT'] !== null ? autolinker.link(feature.properties['LENGHT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_cerco_3_0() {
-            return {
-                pane: 'pane_cerco_3',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_cerco_3');
-        map.getPane('pane_cerco_3').style.zIndex = 403;
-        map.getPane('pane_cerco_3').style['mix-blend-mode'] = 'normal';
-        var layer_cerco_3 = new L.geoJson(json_cerco_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_cerco_3',
-            layerName: 'layer_cerco_3',
-            pane: 'pane_cerco_3',
-            onEachFeature: pop_cerco_3,
-            style: style_cerco_3_0,
-        });
-        bounds_group.addLayer(layer_cerco_3);
-        map.addLayer(layer_cerco_3);
+        bounds_group.addLayer(layer_ANPChubut__1);
+        map.addLayer(layer_ANPChubut__1);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/cerco_3.png" /> cerco': layer_cerco_3,'senderos<br /><table><tr><td style="text-align: center;"><img src="legend/senderos_2_Peatonal0.png" /></td><td>Peatonal</td></tr><tr><td style="text-align: center;"><img src="legend/senderos_2_Vehicular1.png" /></td><td>Vehicular</td></tr></table>': layer_senderos_2,'<img src="legend/parcela_1.png" /> parcela': layer_parcela_1,"ploma400": layer_ploma400_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/ANPChubut__1.png" /> ANPChubut_': layer_ANPChubut__1,"google": layer_google_0,},{collapsed:false}).addTo(map);
         setBounds();
-        L.ImageOverlay.include({
-            getBounds: function () {
-                return this._bounds;
-            }
-        });
+        map.addControl(new L.Control.Search({
+            layer: layer_ANPChubut__1,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Nombre'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
         </script>
     </body>
 </html>
