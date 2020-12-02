@@ -6,9 +6,8 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -23,7 +22,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -31,16 +30,15 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-search.js"></script>
-        <script src="data/ANPChubut__1.js"></script>
+        <script src="data/area_completa_80_1.js"></script>
+        <script src="data/PuntosANPRC_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-46.60805469524593,-72.29984168851385],[-41.37626870520125,-63.3016686448494]]);
+        }).fitBounds([[-45.69390675,-67.56819885518473],[-45.288323250000005,-66.89432114481525]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -57,87 +55,137 @@
         });
         layer_google_0;
         map.addLayer(layer_google_0);
-        function pop_ANPChubut__1(feature, layer) {
+        function pop_area_completa_80_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">id</th>\
-                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['cat'] !== null ? autolinker.link(feature.properties['cat'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Nombre</th>\
-                        <td>' + (feature.properties['Nombre'] !== null ? autolinker.link(feature.properties['Nombre'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Categoria</th>\
-                        <td>' + (feature.properties['Categoria'] !== null ? autolinker.link(feature.properties['Categoria'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">UICN</th>\
-                        <td>' + (feature.properties['UICN'] !== null ? autolinker.link(feature.properties['UICN'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Ecorregion</th>\
-                        <td>' + (feature.properties['Ecorregion'] !== null ? autolinker.link(feature.properties['Ecorregion'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Superficie</th>\
-                        <td>' + (feature.properties['Superficie'] !== null ? autolinker.link(feature.properties['Superficie'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Creacion</th>\
-                        <td>' + (feature.properties['Creacion'] !== null ? autolinker.link(feature.properties['Creacion'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Ins_Legal</th>\
-                        <td>' + (feature.properties['Ins_Legal'] !== null ? autolinker.link(feature.properties['Ins_Legal'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Num_Ley</th>\
-                        <td>' + (feature.properties['Num_Ley'] !== null ? autolinker.link(feature.properties['Num_Ley'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['cat1'] !== null ? autolinker.link(feature.properties['cat1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_ANPChubut__1_0() {
+        function style_area_completa_80_1_0() {
             return {
-                pane: 'pane_ANPChubut__1',
+                pane: 'pane_area_completa_80_1',
                 opacity: 1,
-                color: 'rgba(14,64,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(23,99,0,0.5)',
+                fillColor: 'rgba(178,223,138,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_area_completa_80_1');
+        map.getPane('pane_area_completa_80_1').style.zIndex = 401;
+        map.getPane('pane_area_completa_80_1').style['mix-blend-mode'] = 'normal';
+        var layer_area_completa_80_1 = new L.geoJson(json_area_completa_80_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_area_completa_80_1',
+            layerName: 'layer_area_completa_80_1',
+            pane: 'pane_area_completa_80_1',
+            onEachFeature: pop_area_completa_80_1,
+            style: style_area_completa_80_1_0,
+        });
+        bounds_group.addLayer(layer_area_completa_80_1);
+        map.addLayer(layer_area_completa_80_1);
+        function pop_PuntosANPRC_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['field_1'] !== null ? autolinker.link(feature.properties['field_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['field_2'] !== null ? autolinker.link(feature.properties['field_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['field_3'] !== null ? autolinker.link(feature.properties['field_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PuntosANPRC_2_0() {
+            return {
+                pane: 'pane_PuntosANPRC_2',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,130,64,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_ANPChubut__1');
-        map.getPane('pane_ANPChubut__1').style.zIndex = 401;
-        map.getPane('pane_ANPChubut__1').style['mix-blend-mode'] = 'normal';
-        var layer_ANPChubut__1 = new L.geoJson(json_ANPChubut__1, {
+        map.createPane('pane_PuntosANPRC_2');
+        map.getPane('pane_PuntosANPRC_2').style.zIndex = 402;
+        map.getPane('pane_PuntosANPRC_2').style['mix-blend-mode'] = 'normal';
+        var layer_PuntosANPRC_2 = new L.geoJson(json_PuntosANPRC_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_ANPChubut__1',
-            layerName: 'layer_ANPChubut__1',
-            pane: 'pane_ANPChubut__1',
-            onEachFeature: pop_ANPChubut__1,
-            style: style_ANPChubut__1_0,
+            dataVar: 'json_PuntosANPRC_2',
+            layerName: 'layer_PuntosANPRC_2',
+            pane: 'pane_PuntosANPRC_2',
+            onEachFeature: pop_PuntosANPRC_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PuntosANPRC_2_0(feature));
+            },
         });
-        bounds_group.addLayer(layer_ANPChubut__1);
-        map.addLayer(layer_ANPChubut__1);
+        bounds_group.addLayer(layer_PuntosANPRC_2);
+        map.addLayer(layer_PuntosANPRC_2);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/ANPChubut__1.png" /> ANPChubut_': layer_ANPChubut__1,"google": layer_google_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/PuntosANPRC_2.png" /> PuntosANPRC': layer_PuntosANPRC_2,'<img src="legend/area_completa_80_1.png" /> area_completa_80': layer_area_completa_80_1,"google": layer_google_0,},{collapsed:false}).addTo(map);
         setBounds();
-        map.addControl(new L.Control.Search({
-            layer: layer_ANPChubut__1,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'Nombre'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
         </script>
     </body>
 </html>
