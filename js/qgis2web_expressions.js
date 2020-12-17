@@ -754,3 +754,17 @@ function fnc__specialcol_(values, context) {
 function fnc_project_color(values, context) {
     return false;
 };
+
+
+
+function exp_label_ANPChubut__1_eval_expression(context) {
+    // 'ANP ' + Nombre
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return ('ANP ' + feature.properties['Nombre'] );
+    } else {
+        return ('ANP ' + feature['Nombre'] );
+    }
+}
