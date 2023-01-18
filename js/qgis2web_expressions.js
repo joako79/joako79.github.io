@@ -754,17 +754,3 @@ function fnc__specialcol_(values, context) {
 function fnc_project_color(values, context) {
     return false;
 };
-
-
-
-function exp_label_viasdecomunicacion_3_eval_expression(context) {
-    // concat("RUTA", ' ', "N")
-
-    var feature = context.feature;
-    
-    if (feature.properties) {
-        return fnc_concat([feature.properties['RUTA'] ,' ',feature.properties['N'] ], context);
-    } else {
-        return fnc_concat([feature['RUTA'] ,' ',feature['N'] ], context);
-    }
-}
